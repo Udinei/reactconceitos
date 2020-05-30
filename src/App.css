@@ -1,0 +1,8 @@
+﻿/** esses css serão importados automaticamente para app atraves do style-loader
+* para tanto deve haver um import desse arquivo no App.js ex: import '.App.css';
+*/ 
+body {
+    background: #7159c1;
+    color: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+}
