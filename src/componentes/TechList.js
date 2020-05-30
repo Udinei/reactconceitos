@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react'
+import TechItem from './TechItem';
 
 class TechList extends Component {
     // estado do componente, é imutavel, pode ser alterado somente
@@ -37,7 +38,7 @@ class TechList extends Component {
         // altera o obj techs do state, usando filter, 
         // onde sera retornado um novo array contendo todos 
         // obj do array, diferente de tech
-        this.setState({ techs: this.state.techs.filter(t => t !== tech)})
+        this.setState({ techs: this.state.techs.filter(t => t !== tech) })
     }
 
     render() {
@@ -45,22 +46,21 @@ class TechList extends Component {
             <form onSubmit={ this.handleSubmit }>
                 {/* <> mais de um elemento html deve estar em volto por essa tag */ }
                 <ul>
-                    { this.state.techs.map(tech => ( 
-                        //* toda tipo de list deve conter uma key, que pode ser o proprio elemento da lista também */ }
-                          <li key={ tech }>
-                             { tech } 
-                             {/** this.handleDelete(tech) <- executando a funcao, se for usado assim, sera excutado assim que a pagina carregar*/}
-                             {/** () => this.handleDelete(tech) <- e assim, criando uma nova funcao, sera excutado somente quando for clicado no button */}
-                             <button onClick={() => this.handleDelete(tech)} type="button">Remover</button>
-                          </li>
-                    ))}
+                    {/* passando propriedade e funcoes para o componente TechItem, a funcao é chamada de dentro do componente TechItem */ }
+                    { this.state.techs.map(tech => (
+                        <TechItem
+                            key={ tech }
+                            tech={ tech }
+                            onDelete={ () => this.handleDelete(tech) }
+                        />
+                        ))}
                 </ul>
-            <input
-                type="text"
-                onChange={ this.handleInputChange }
-                value={ this.state.newTech } // caso mude o valor na variavel newTech no state, sera mudado no input também
-            />
-            <button type="submit"> Enviar </button>
+                <input
+                    type="text"
+                    onChange={ this.handleInputChange }
+                    value={ this.state.newTech } // caso mude o valor na variavel newTech no state, sera mudado no input também
+                />
+                <button type="submit"> Enviar </button>
             </form >
             //</>
         );
