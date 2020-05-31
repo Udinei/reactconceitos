@@ -1,5 +1,6 @@
 ﻿import React from 'react';
-import TechList from './TechList';
+import PropTypes from 'prop-types';
+
 
 // componente implementado em forma de funcao em vez de classe
 // porque nao armazena estado, fica mais simples
@@ -16,5 +17,18 @@ function TechItem({ tech, onDelete }) {
         </li>
     );
 }
+
+// passando valores default para os parametros das funçoes, pode ser
+// usado da mesma forma nas classes
+TechItem.defaultProps = {
+    tech: 'Oculto',
+};
+
+// validando entrada das propriedades do componentes
+TechItem.propTypes = {
+    tech: PropTypes.string,
+    onDelete: PropTypes.func.isRequired,
+   // PropTypes.checkPropTypes()
+};
 
 export default TechItem;
